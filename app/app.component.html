@@ -1,0 +1,7 @@
+<StackLayout class="p-20">
+    <Label text="Call it in?" class="h1 text-center"></Label>
+    <TextField hint="Destination" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
+    <TextField hint="Arrival time" keyboardType="datetime" autocorrect="false" autocapitalizationType="none"></TextField>
+    <Button text="Get" (tap)="loadRemote()" class="btn btn-primary btn-active"></Button>
+    <Label [text]="message" class="h2 text-center" textWrap="true"></Label>
+</StackLayout>
