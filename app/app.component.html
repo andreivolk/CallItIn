@@ -1,8 +1,12 @@
-<StackLayout class="p-20">
-    <Label text="Call it in?" class="h1 text-center"></Label>
-    <TextField [(ngModel)]="departure" hint="Departure" keyboardType="text" autocorrect="false" autocapitalizationType="none"></TextField>
-    <TextField [(ngModel)]="arrival" hint="Arrival" keyboardType="text" autocorrect="false" autocapitalizationType="none"></TextField>
-    <Button text="Get" (tap)="loadRemote()" class="btn btn-primary btn-active"></Button>
-    <Label [text]="duration" class="h2 text-center" textWrap="true"></Label>
-    <Label [text]="durationTraf" class="h2 text-center" textWrap="true"></Label>
-</StackLayout>
+<ScrollView>
+    <StackLayout class="p-20">
+        <Label text="Call it in?" class="h1 text-center"></Label>
+        <TextField [(ngModel)]="departure" hint="Departure" keyboardType="text" autocorrect="false" autocapitalizationType="none"></TextField>
+        <TextField [(ngModel)]="arrival" hint="Arrival" keyboardType="text" autocorrect="false" autocapitalizationType="none"></TextField>
+        <timePicker class="example-container" #timePicker (loaded)="configure(timePicker)" verticalAlignment="center"></timePicker>
+        <Button text="Get" (tap)="loadRemote()" class="btn btn-primary btn-active"></Button>
+        <Label [text]="callItIn" class="h2 text-center" textWrap="true"></Label>
+        <Label [text]="duration" class="h2 text-center" textWrap="true"></Label>
+        <Label [text]="durationTraf" class="h2 text-center" textWrap="true"></Label>
+    </StackLayout>
+</ScrollView>

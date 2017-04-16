@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Http } from '@angular/http';
+import { TimePicker } from "ui/time-picker";
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -11,8 +12,17 @@ export class AppComponent {
     public durationTraffic: string = "";
     public departure: string = "";
     public arrival: string = "";
-    public debug = this.departure + this.arrival;
     public departureTime: number = Date.now();
+    public arrivalTime: Date = new Date();
+    public estimatedArrival: number = 0;
+    public callItIn: string = "";
+
+    @ViewChild("timePicker") tp: ElementRef;
+
+    configure(timePicker: TimePicker) {
+        timePicker.hour = 9;
+        timePicker.minute = 25;
+    }
 
     public get message(): string {
         return this.duration;
@@ -23,14 +33,28 @@ export class AppComponent {
     constructor(private http: Http) {
     }
     public loadRemote() {
-        this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=` + this.departure + `&destinations=` + this.arrival + `&mode=car&departure_time=` + this.departureTime + `&language=en-EN&key=YOURKEY
+        this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=` + this.departure + `&destinations=` + this.arrival + `&mode=car&departure_time=` + this.departureTime + `&language=en-EN&key=
         `).map(res => res.json()).subscribe((response: any) => {
                 this.duration = "Duration: " + this.cleanString(JSON.stringify(response.rows[0].elements[0].duration.text));
                 this.durationTraffic = "Duration in traffic: " + this.cleanString(JSON.stringify(response.rows[0].elements[0].duration_in_traffic.text));
+                let timePicker: TimePicker = <TimePicker>this.tp.nativeElement;
+                this.arrivalTime.setHours(timePicker.hour, timePicker.minute);
+                var estT = new Date(this.estimatedArrival);
+                this.estimatedArrival = this.departureTime + (response.rows[0].elements[0].duration.value * 1000);
+                var estTC = new Date(this.estimatedArrival);
+                this.compareTimes();
             });
     }
     public cleanString(string) {
         var cleanString = string.replace(/"/g, '');
         return cleanString;
+    }
+    public compareTimes() {
+        if (this.estimatedArrival > this.arrivalTime.getTime()) {
+            this.callItIn = "Late";
+        }
+        else {
+            this.callItIn = "On time";
+        }
     }
 }
