@@ -1,0 +1,10 @@
+<GridLayout rows="auto, *">
+    <StackLayout visibility="{{!isLoading ? 'visible' : 'collapsed'}}">
+        <Label [text]="callItIn" class="h2 text-center" textWrap="true"></Label>
+        <Label [text]="duration" class="h2 text-center" textWrap="true"></Label>
+        <Label [text]="eta | date:'shortTime'" class="h2 text-center" textWrap="true"></Label>
+        <Button text="Back" (tap)="back()" class="btn btn-primary btn-active"></Button>
+    </StackLayout>
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" margin-top="300" horizontalAlignment="center"
+        verticalAlignment="center" class="activity-indicator" width="100" height="100"></ActivityIndicator>
+</GridLayout>

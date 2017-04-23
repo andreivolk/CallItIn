@@ -2,14 +2,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { AppComponent } from "./app.component";
+import { routes, navigatableComponents } from "./app.routing";
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, navigatableComponents],
     bootstrap: [AppComponent],
     imports: [NativeScriptModule,
-        NativeScriptHttpModule, NativeScriptFormsModule],
+        NativeScriptHttpModule, NativeScriptFormsModule, NativeScriptRouterModule,
+        NativeScriptRouterModule.forRoot(routes)],
     exports: [
         NativeScriptModule,
         NativeScriptHttpModule, NativeScriptFormsModule

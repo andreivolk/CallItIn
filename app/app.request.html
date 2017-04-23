@@ -7,11 +7,6 @@
             <TextField [(ngModel)]="arrival" hint="Arrival" keyboardType="text" autocorrect="false" autocapitalizationType="none" style="width:90%;"></TextField>
             <timePicker class="example-container" #timePicker (loaded)="configure(timePicker)" verticalAlignment="center"></timePicker>
             <Button text="Get" (tap)="loadRemote()" class="btn btn-primary btn-active"></Button>
-            <Label [text]="callItIn" class="h2 text-center" textWrap="true"></Label>
-            <Label [text]="duration" class="h2 text-center" textWrap="true"></Label>
-            <Label [text]="durationTraf" class="h2 text-center" textWrap="true"></Label>
         </StackLayout>
-        <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" margin-top="300" horizontalAlignment="center"
-            verticalAlignment="center" class="activity-indicator" width="100" height="100"></ActivityIndicator>
     </GridLayout>
 </ScrollView>
