@@ -19,6 +19,7 @@ export class RequestComponent implements OnInit {
     public arrivalTime: Date = new Date();
     public estimatedArrival: number = 0;
     public callItIn: string = "";
+    public onTime: boolean = false;
 
     constructor(private http: Http, private router: Router, private page: Page) {
     }
@@ -43,15 +44,15 @@ export class RequestComponent implements OnInit {
     public loadRemote() {
         this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=` + this.departure + `&destinations=` + this.arrival + `&mode=car&departure_time=` + this.departureTime + `&language=en-EN&key=
         `).map(res => res.json()).subscribe((response: any) => {
-                this.duration = "Duration: " + this.cleanString(JSON.stringify(response.rows[0].elements[0].duration.text));
-                this.durationTraffic = "Duration in traffic: " + this.cleanString(JSON.stringify(response.rows[0].elements[0].duration_in_traffic.text));
+                this.duration = this.cleanString(JSON.stringify(response.rows[0].elements[0].duration.text));
+                // this.durationTraffic = "Duration in traffic: " + this.cleanString(JSON.stringify(response.rows[0].elements[0].duration_in_traffic.text));
                 let timePicker: TimePicker = <TimePicker>this.tp.nativeElement;
                 this.arrivalTime.setHours(timePicker.hour, timePicker.minute);
                 var estT = new Date(this.estimatedArrival);
                 this.estimatedArrival = this.departureTime + (response.rows[0].elements[0].duration.value * 1000);
                 var estTC = new Date(this.estimatedArrival);
                 this.compareTimes();
-                this.router.navigate(["/result"], { queryParams: { result: this.callItIn, duration: this.duration, eta: estTC } });
+                this.router.navigate(["/result"], { queryParams: { result: this.callItIn, duration: this.duration, eta: estTC, onTime: this.onTime } });
             });
     }
     public cleanString(string) {
@@ -64,6 +65,7 @@ export class RequestComponent implements OnInit {
         }
         else {
             this.callItIn = "On time";
+            this.onTime = true;
         }
     }
 }

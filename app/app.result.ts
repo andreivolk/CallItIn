@@ -11,6 +11,7 @@ export class ResultComponent {
     public callItIn: string = "";
     public duration: string = "";
     public eta: string = "";
+    public resStyle: string = "green";
     isLoading = false;
 
     constructor(
@@ -27,11 +28,20 @@ export class ResultComponent {
                 this.callItIn = params['result'];
                 this.duration = params['duration'];
                 this.eta = params['eta'];
+                this.setStyle(params['onTime']);
             });
         this.isLoading = false;
     }
 
     public back() {
         this.router.navigate(["/"]);
+    }
+
+    public setStyle(onTime) {
+        if (onTime == "true") {
+            this.resStyle = "green";
+        } else {
+            this.resStyle = "red";
+        }
     }
 }
