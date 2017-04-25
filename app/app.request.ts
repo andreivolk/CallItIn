@@ -6,7 +6,7 @@ import { Page } from "ui/page";
 import 'rxjs/add/operator/map';
 
 @Component({
-    selector: "my-app",
+    selector: "main",
     templateUrl: "app.request.html",
 })
 
