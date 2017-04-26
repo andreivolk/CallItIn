@@ -31,16 +31,10 @@ export class RequestComponent implements OnInit {
     @ViewChild("timePicker") tp: ElementRef;
 
     configure(timePicker: TimePicker) {
-        timePicker.hour = 9;
-        timePicker.minute = 25;
+        timePicker.hour = this.arrivalTime.getHours();
+        timePicker.minute = this.arrivalTime.getMinutes();
     }
 
-    // public get message(): string {
-    //     return this.duration;
-    // }
-    // public get durationTraf(): string {
-    //     return this.durationTraffic;
-    // }
     public loadRemote() {
         this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=` + this.departure + `&destinations=` + this.arrival + `&mode=car&departure_time=` + this.departureTime + `&language=en-EN&key=
         `).map(res => res.json()).subscribe((response: any) => {
