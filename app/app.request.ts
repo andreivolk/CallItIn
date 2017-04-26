@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 
 export class RequestComponent implements OnInit {
     public duration: string = "Nothing yet";
-    public durationTraffic: string = "";
+    public distance: string = "";
     public departure: string = "";
     public arrival: string = "";
     public departureTime: number = Date.now();
@@ -35,24 +35,24 @@ export class RequestComponent implements OnInit {
         timePicker.minute = 25;
     }
 
-    public get message(): string {
-        return this.duration;
-    }
-    public get durationTraf(): string {
-        return this.durationTraffic;
-    }
+    // public get message(): string {
+    //     return this.duration;
+    // }
+    // public get durationTraf(): string {
+    //     return this.durationTraffic;
+    // }
     public loadRemote() {
         this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=` + this.departure + `&destinations=` + this.arrival + `&mode=car&departure_time=` + this.departureTime + `&language=en-EN&key=
         `).map(res => res.json()).subscribe((response: any) => {
                 this.duration = this.cleanString(JSON.stringify(response.rows[0].elements[0].duration.text));
-                // this.durationTraffic = "Duration in traffic: " + this.cleanString(JSON.stringify(response.rows[0].elements[0].duration_in_traffic.text));
+                this.distance = this.cleanString(JSON.stringify(response.rows[0].elements[0].distance.text));
                 let timePicker: TimePicker = <TimePicker>this.tp.nativeElement;
                 this.arrivalTime.setHours(timePicker.hour, timePicker.minute);
                 var estT = new Date(this.estimatedArrival);
                 this.estimatedArrival = this.departureTime + (response.rows[0].elements[0].duration.value * 1000);
                 var estTC = new Date(this.estimatedArrival);
                 this.compareTimes();
-                this.router.navigate(["/result"], { queryParams: { result: this.callItIn, duration: this.duration, eta: estTC, onTime: this.onTime } });
+                this.router.navigate(["/result"], { queryParams: { result: this.callItIn, duration: this.duration, distance: this.distance, eta: estTC, onTime: this.onTime } });
             });
     }
     public cleanString(string) {

@@ -2,13 +2,15 @@
     <StackLayout visibility="{{!isLoading ? 'visible' : 'collapsed'}}" horizontalAlignment="center">
         <Label minHeight="200"></Label>
         <!--<Label [text]="callItIn" class="h2" textWrap="true"></Label>-->
-        <GridLayout rows="auto,auto,auto" columns="auto,auto">
+        <GridLayout rows="auto,auto,auto,auto" columns="auto,auto">
             <Label text="You will be: " class="h2" textWrap="true" row="0" col="0"></Label>
             <Label [text]="callItIn" class="h2 text-right" textWrap="true" [style.color]="resStyle" row="0" col="1"></Label>
             <Label text="Duration: " class="h2" textWrap="true" row="1" col="0"></Label>
             <Label [text]="duration" class="h2 text-right" textWrap="true" row="1" col="1"></Label>
-            <Label text="ETA: " class="h2" textWrap="true" row="2" col="0"></Label>
-            <Label [text]="eta | date:'shortTime'" class="h2 text-right" textWrap="true" row="2" col="1"></Label>
+            <Label text="Distance: " class="h2" textWrap="true" row="2" col="0"></Label>
+            <Label [text]="distance" class="h2 text-right" textWrap="true" row="2" col="1"></Label>
+            <Label text="ETA: " class="h2" textWrap="true" row="3" col="0"></Label>
+            <Label [text]="eta | date:'shortTime'" class="h2 text-right" textWrap="true" row="3" col="1"></Label>
         </GridLayout>
         <Button text="Back" (tap)="back()" class="btn btn-primary btn-active"></Button>
     </StackLayout>

@@ -10,6 +10,7 @@ export class ResultComponent {
 
     public callItIn: string = "";
     public duration: string = "";
+    public distance: string = "";
     public eta: string = "";
     public resStyle: string = "green";
     isLoading = false;
@@ -27,6 +28,7 @@ export class ResultComponent {
             .subscribe(params => {
                 this.callItIn = params['result'];
                 this.duration = params['duration'];
+                this.distance = params['distance'];
                 this.eta = params['eta'];
                 this.setStyle(params['onTime']);
             });
