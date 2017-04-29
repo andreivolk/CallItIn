@@ -3,6 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
@@ -12,7 +13,9 @@ import { routes, navigatableComponents } from "./app.routing";
     bootstrap: [AppComponent],
     imports: [NativeScriptModule,
         NativeScriptHttpModule, NativeScriptFormsModule, NativeScriptRouterModule,
-        NativeScriptRouterModule.forRoot(routes)],
+        NativeScriptRouterModule.forRoot(routes), TNSFontIconModule.forRoot({
+            'mdi': 'material-design-icons.css'
+        })],
     exports: [
         NativeScriptModule,
         NativeScriptHttpModule, NativeScriptFormsModule

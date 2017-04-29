@@ -13,7 +13,9 @@ export class ResultComponent {
     public distance: string = "";
     public eta: string = "";
     public resStyle: string = "green";
+    public resIcon: string = "'mdi-directions-car' | fonticon";
     isLoading = false;
+    onTime = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -42,8 +44,10 @@ export class ResultComponent {
     public setStyle(onTime) {
         if (onTime == "true") {
             this.resStyle = "green";
+            this.onTime = true;
         } else {
             this.resStyle = "red";
+            this.resIcon = "'mdi-local-phone' | fonticon";
         }
     }
 }
