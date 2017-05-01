@@ -4,9 +4,7 @@
         <StackLayout class="icons-container">
             <Label visibility="{{onTime ? 'visible' : 'collapsed'}}" minHeight="100" class="mdi" [text]="'mdi-directions-car' | fonticon"></Label>
             <Label visibility="{{!onTime ? 'visible' : 'collapsed'}}" minHeight="100" class="mdi" [text]="'mdi-local-phone' | fonticon"></Label>
-            <!--<Label minHeight="100" class="mdi" [text]="!onTime ? '\'mdi-directions-car\' | fonticon' : '\'mdi-local-phone\' | fonticon'"></Label>-->
         </StackLayout>
-        <!--<Label [text]="callItIn" class="h2" textWrap="true"></Label>-->
         <GridLayout rows="auto,auto,auto,auto" columns="auto,auto">
             <Label text="You will be: " class="h2" textWrap="true" row="0" col="0"></Label>
             <Label [text]="callItIn" class="h2 text-right" textWrap="true" [style.color]="resStyle" row="0" col="1"></Label>
