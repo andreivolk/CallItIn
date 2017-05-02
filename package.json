@@ -1,10 +1,10 @@
 {
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "description": "Find out whether to call or drive.",
+  "license": "None",
+  "readme": "Coming soon",
+  "repository": "git://github.com/faterror/CallItIn",
   "nativescript": {
-    "id": "org.nativescript.callitin",
+    "id": "avol.callitin",
     "tns-android": {
       "version": "2.4.1"
     }
