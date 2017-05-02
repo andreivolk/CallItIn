@@ -1,13 +1,13 @@
 {
     "private": false,
     "nativescript": {
-        "id": "org.nativescript.helloworldng"
+        "id": "avol.callitin"
     },
-    "name": "tns-template-hello-world-ng",
+    "name": "Call.It.In",
     "main": "main.js",
     "version": "2.4.5",
-    "author": "Telerik <support@telerik.com>",
-    "description": "Nativescript Angular Hello World template",
+    "author": "Andrei Volkv <andrei@avol.tech>",
+    "description": "Find out whether to call or drive.",
     "license": "BSD",
     "keywords": [
         "telerik",
@@ -16,14 +16,14 @@
         "nativescript",
         "{N}",
         "tns",
-        "appbuilder",
-        "template"
+        "callitin",
+        "avol"
     ],
     "repository": {
         "type": "git",
-        "url": "git://github.com/NativeScript/template-hello-world-ng"
+        "url": "git://github.com/faterror/CallItIn"
     },
-    "homepage": "https://github.com/NativeScript/template-hello-world-ng",
+    "homepage": "https://github.com/faterror/CallItIn",
     "android": {
         "v8Flags": "--expose_gc"
     },
